@@ -5,4 +5,4 @@ gemspec
 
 gem 'pry'
 gem 'rake'
-gem 'simplecov', '0.11.2'
+gem "codeclimate-test-reporter", group: :test, require: nil
