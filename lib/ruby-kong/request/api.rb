@@ -105,16 +105,16 @@ module RubyKong
               :status => 200,
               :body   => {
                 "data"   =>
-                  [
-                    {
-                      "upstream_url" => "https://api.shipit.vn/v1/",
-                      "id"           => "0faeb3a7-3839-4739-916a-6b139c5b491b",
-                      "name"         => "shipit",
-                      "created_at"   => 1458706997000,
-                      "request_host" => "api.shipit.vn"
-                    }
-                  ],
-                 "total" => 1
+                [
+                  {
+                    "upstream_url" => "https://api.shipit.vn/v1/",
+                    "id"           => "0faeb3a7-3839-4739-916a-6b139c5b491b",
+                    "name"         => "shipit",
+                    "created_at"   => 1458706997000,
+                    "request_host" => "api.shipit.vn"
+                  }
+                ],
+                "total"  => 1
               }.to_s
             }
           )

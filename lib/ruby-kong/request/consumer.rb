@@ -101,7 +101,7 @@ module RubyKong
             :response => {
               :status => 200,
               :body   => {
-                "data"   =>
+                "data"  =>
                 [
                   {
                     'username'   => 'lamdt',

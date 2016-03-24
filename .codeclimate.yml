@@ -21,6 +21,8 @@ engines:
         enabled: false
       Rubocop/Style/FrozenStringLiteralComment:
         enabled: false
+      Rubocop/Metrics/LineLength:
+        enabled: false
 
 ratings:
   paths:

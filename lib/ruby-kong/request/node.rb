@@ -48,18 +48,19 @@ module RubyKong
                   "connections_waiting"  => 0,
                   "connections_writing"  => 1,
                   "total_requests"       => 2757,
-                  "connections_accepted" => 2757},
-                  "database" => {
-                    "response_ratelimiting_metrics" => 0,
-                    "keyauth_credentials"           => 0,
-                    "apis"                          => 0,
-                    "consumers"                     => 0,
-                    "plugins"                       => 0,
-                    "nodes"                         => 1,
-                    "basicauth_credentials"         => 0,
-                    "ratelimiting_metrics"          => 0
-                  }
-                }.to_s
+                  "connections_accepted" => 2757
+                },
+                "database" => {
+                  "response_ratelimiting_metrics" => 0,
+                  "keyauth_credentials"           => 0,
+                  "apis"                          => 0,
+                  "consumers"                     => 0,
+                  "plugins"                       => 0,
+                  "nodes"                         => 1,
+                  "basicauth_credentials"         => 0,
+                  "ratelimiting_metrics"          => 0
+                }
+              }.to_s
             }
           )
         end

@@ -5,4 +5,4 @@ gemspec
 
 gem 'pry'
 gem 'rake'
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem "codeclimate-test-reporter", :group => :test, :require => nil

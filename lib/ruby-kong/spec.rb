@@ -4,11 +4,11 @@ module RubyKong
 
     def paths
       {
-        :node => {
+        :node     => {
           :info   => '/',
           :status => '/status'
         },
-        :api  => {
+        :api      => {
           :create   => '/apis',
           :list     => '/apis',
           :retrieve => '/apis/',
