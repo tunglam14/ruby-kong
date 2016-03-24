@@ -31,30 +31,36 @@ module RubyKong
         end
       end
 
-      class Mock
+      class Stub
         def self.delete
           # Mock with /consumers/lamdt path
-          path = RubyKong.paths[:consumer][:retrieve] + 'lamdt'
+          path = RubyKong.paths[:consumer][:delete] + 'lamdt'
           url = RubyKong::Utils.endpoint_builder(path)
-          stub_request(:delete, url)
-            .to_return(
+
+          RubyKong::Stub.request(
+            method: :delete,
+            url: url,
+            response: {
               :status => 204,
               :body   => ""
-            )
+            }
+          )
         end
 
         def self.update
           # Mock with /consumers/lamdt path
           path = RubyKong.paths[:consumer][:update] + 'lamdt'
           url = RubyKong::Utils.endpoint_builder(path)
-          stub_request(:patch, url)
-            .with(
+          RubyKong::Stub.request(
+            method: :patch,
+            url: url,
+            request: {
               :body => {
                 :custom_id => '1234',
                 :username  => 'lamdt'
               }
-            )
-            .to_return(
+            },
+            response: {
               :status => 200,
               :body   => {
                 'custom_id'  => 1234,
@@ -62,61 +68,74 @@ module RubyKong
                 'created_at' => 1458789832000,
                 'id'         => 'b880f403-b161-4294-9a13-2462d39991b2'
               }.to_s
-            )
+            }
+          )
         end
 
         def self.retrieve
           # Mock with /consumers/lamdt path
           path = RubyKong.paths[:consumer][:retrieve] + 'lamdt'
           url = RubyKong::Utils.endpoint_builder(path)
-          stub_request(:get, url)
-            .to_return(
+
+          RubyKong::Stub.request(
+            method: :get,
+            url: url,
+            response: {
               :status => 200,
               :body   => {
                 'username'   => 'lamdt',
                 'created_at' => 1458789832000,
                 'id'         => 'b880f403-b161-4294-9a13-2462d39991b2'
               }.to_s
-            )
+            }
+          )
         end
 
         def self.list
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:consumer][:list])
-          stub_request(:get, url)
-            .to_return(
+
+          RubyKong::Stub.request(
+            method: :get,
+            url: url,
+            response: {
               :status => 200,
               :body   => {
                 "data"   =>
-                  [
-                    {
-                      'username'   => 'lamdt',
-                      'created_at' => 1458789832000,
-                      'id'         => 'b880f403-b161-4294-9a13-2462d39991b2'
-                    }
-                  ],
-                 "total" => 1
+                [
+                  {
+                    'username'   => 'lamdt',
+                    'created_at' => 1458789832000,
+                    'id'         => 'b880f403-b161-4294-9a13-2462d39991b2'
+                  }
+                ],
+                "total" => 1
               }.to_s
-            )
+            }
+          )
         end
 
         def self.create
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:consumer][:create])
-          stub_request(:post, url)
-            .with(
+
+          RubyKong::Stub.request(
+            method: :post,
+            url: url,
+            request: {
               :body => {
                 :username => 'lamdt'
               }
-            )
-            .to_return(
+            },
+            response: {
               :status => 201,
               :body   => {
                 'username'   => 'lamdt',
                 'created_at' => 1458789832000,
                 'id'         => 'b880f403-b161-4294-9a13-2462d39991b2'
               }.to_s
-            )
-        end
-      end
-    end
-  end
-end
+            }
+          )
+        end # End of Stub.create method
+      end # End of Stub module
+    end # end of Consumer
+  end # End of Request
+end # End of RubyKong

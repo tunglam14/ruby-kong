@@ -31,47 +31,58 @@ module RubyKong
         end
       end
 
-      class Mock
+      class Stub
         def self.delete
           # Mock with /apis/shipit path
-          path = RubyKong.paths[:api][:retrieve] + 'shipit'
+          path = RubyKong.paths[:api][:delete] + 'shipit'
           url = RubyKong::Utils.endpoint_builder(path)
-          stub_request(:delete, url)
-            .to_return(
+
+          RubyKong::Stub.request(
+            method: :delete,
+            url: url,
+            response: {
               :status => 204,
               :body   => ""
-            )
+            }
+          )
         end
 
         def self.update
           # Mock with /apis/shipit path
           path = RubyKong.paths[:api][:update] + 'shipit'
-          url = RubyKong::Utils.endpoint_builder(path)
-          stub_request(:patch, url)
-            .with(
+          url  = RubyKong::Utils.endpoint_builder(path)
+
+          RubyKong::Stub.request(
+            method: :patch,
+            url: url,
+            request: {
               :body => {
-                :upstream_url => 'https://api.shipit.vn/v2/',
-                :name         => 'shipit'
+                    :upstream_url => 'https://api.shipit.vn/v2/',
+                    :name         => 'shipit'
               }
-            )
-            .to_return(
-              :status => 200,
-              :body   => {
-                'upstream_url' => 'https://api.shipit.vn/v2/',
-                'id'           => '0faeb3a7-3839-4739-916a-6b139c5b491b',
-                'name'         => 'shipit',
-                'created_at'   => 1458706997000,
-                'request_host' => 'api.shipit.vn'
-              }.to_s
-            )
+            },
+            response: {
+               :status => 200,
+               :body   => {
+                 'upstream_url' => 'https://api.shipit.vn/v2/',
+                 'id'           => '0faeb3a7-3839-4739-916a-6b139c5b491b',
+                 'name'         => 'shipit',
+                 'created_at'   => 1458706997000,
+                 'request_host' => 'api.shipit.vn'
+               }.to_s
+            }
+          )
         end
 
         def self.retrieve
           # Mock with /apis/shipit path
           path = RubyKong.paths[:api][:retrieve] + 'shipit'
           url = RubyKong::Utils.endpoint_builder(path)
-          stub_request(:get, url)
-            .to_return(
+
+          RubyKong::Stub.request(
+            method: :get,
+            url: url,
+            response: {
               :status => 200,
               :body   => {
                 "upstream_url" => "https://api.shipit.vn/v1/",
@@ -80,13 +91,17 @@ module RubyKong
                 "created_at"   => 1458706997000,
                 "request_host" => "api.shipit.vn"
               }.to_s
-            )
+            }
+          )
         end
 
         def self.list
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:api][:list])
-          stub_request(:get, url)
-            .to_return(
+
+          RubyKong::Stub.request(
+            method: :get,
+            url: url,
+            response: {
               :status => 200,
               :body   => {
                 "data"   =>
@@ -101,20 +116,23 @@ module RubyKong
                   ],
                  "total" => 1
               }.to_s
-            )
+            }
+          )
         end
 
         def self.create
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:api][:create])
-          stub_request(:post, url)
-            .with(
+          RubyKong::Stub.request(
+            method: :post,
+            url: url,
+            request: {
               :body => {
                 :upstream_url => 'https://api.shipit.vn/v1/',
                 :request_host => 'api.shipit.vn',
                 :name         => 'shipit'
               }
-            )
-            .to_return(
+            },
+            response: {
               :status => 201,
               :body   => {
                 'upstream_url' => 'https://api.shipit.vn/v1/',
@@ -123,9 +141,10 @@ module RubyKong
                 'created_at'   => 1458706997000,
                 'request_host' => 'api.shipit.vn'
               }.to_s
-            )
-        end
-      end
-    end
-  end
-end
+            }
+          )
+        end # End of Stub.create method
+      end # End of Stub module
+    end # end of Api
+  end # End of Request
+end # End of RubyKong

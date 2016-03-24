@@ -7,4 +7,4 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'ruby-kong'
 include WebMock::API
 
-WebMock.allow_net_connect!
+RubyKong::Stub.reopen_real_connection!
