@@ -45,7 +45,7 @@ module RubyKong
 
         def self.update
           # Mock with /apis/shipit path
-          path = RubyKong.paths[:api][:retrieve] + 'shipit'
+          path = RubyKong.paths[:api][:update] + 'shipit'
           url = RubyKong::Utils.endpoint_builder(path)
           stub_request(:patch, url)
             .with(
