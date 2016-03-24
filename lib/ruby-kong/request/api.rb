@@ -104,7 +104,7 @@ module RubyKong
             :response => {
               :status => 200,
               :body   => {
-                "data"   =>
+                "data"  =>
                 [
                   {
                     "upstream_url" => "https://api.shipit.vn/v1/",
@@ -114,7 +114,7 @@ module RubyKong
                     "request_host" => "api.shipit.vn"
                   }
                 ],
-                "total"  => 1
+                "total" => 1
               }.to_s
             }
           )
