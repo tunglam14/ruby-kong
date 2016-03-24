@@ -14,6 +14,13 @@ module RubyKong
           :retrieve => '/apis/',
           :update   => '/apis/',
           :delete   => '/apis/'
+        },
+        :consumer => {
+          :create   => '/consumers',
+          :list     => '/consumers',
+          :retrieve => '/consumers/',
+          :update   => '/consumers/',
+          :delete   => '/consumers/'
         }
       }
     end
