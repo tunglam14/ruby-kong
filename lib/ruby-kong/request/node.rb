@@ -20,9 +20,9 @@ module RubyKong
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:node][:info])
 
           RubyKong::Stub.request(
-            method: :get,
-            url: url,
-            response: {
+            :method   => :get,
+            :url      => url,
+            :response => {
               :body => {
                 'version'     => '0.7.0',
                 'lua_version' => 'LuaJIT 2.1.0-beta1',
@@ -35,10 +35,11 @@ module RubyKong
 
         def self.get_node_status
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:node][:status])
+
           RubyKong::Stub.request(
-            method: :get,
-            url: url,
-            response: {
+            :method   => :get,
+            :url      => url,
+            :response => {
               :body => {
                 "server"   => {
                   "connections_handled"  => 2757,

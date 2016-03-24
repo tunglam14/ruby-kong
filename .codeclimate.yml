@@ -14,6 +14,14 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Metrics/ClassLength:
+        enabled: false
+      Rubocop/Style/NumericLiterals:
+        enabled: false
+      Rubocop/Style/FrozenStringLiteralComment:
+        enabled: false
+
 ratings:
   paths:
   - Gemfile.lock

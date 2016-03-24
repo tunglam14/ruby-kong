@@ -20,13 +20,13 @@ module RubyKong
 
         def update(*args)
           resource = args[0][:name] || args[0][:id]
-          path = RubyKong.paths[:api][:update] + resource
+          path     = RubyKong.paths[:api][:update] + resource
           Request.patch(path, args[0])
         end
 
         def delete(*args)
           resource = args[0][:name] || args[0][:id]
-          path = RubyKong.paths[:api][:update] + resource
+          path     = RubyKong.paths[:api][:update] + resource
           Request.delete(path, args[0])
         end
       end
@@ -35,12 +35,12 @@ module RubyKong
         def self.delete
           # Mock with /apis/shipit path
           path = RubyKong.paths[:api][:delete] + 'shipit'
-          url = RubyKong::Utils.endpoint_builder(path)
+          url  = RubyKong::Utils.endpoint_builder(path)
 
           RubyKong::Stub.request(
-            method: :delete,
-            url: url,
-            response: {
+            :method   => :delete,
+            :url      => url,
+            :response => {
               :status => 204,
               :body   => ""
             }
@@ -53,23 +53,23 @@ module RubyKong
           url  = RubyKong::Utils.endpoint_builder(path)
 
           RubyKong::Stub.request(
-            method: :patch,
-            url: url,
-            request: {
+            :method   => :patch,
+            :url      => url,
+            :request  => {
               :body => {
-                    :upstream_url => 'https://api.shipit.vn/v2/',
-                    :name         => 'shipit'
+                :upstream_url => 'https://api.shipit.vn/v2/',
+                :name         => 'shipit'
               }
             },
-            response: {
-               :status => 200,
-               :body   => {
-                 'upstream_url' => 'https://api.shipit.vn/v2/',
-                 'id'           => '0faeb3a7-3839-4739-916a-6b139c5b491b',
-                 'name'         => 'shipit',
-                 'created_at'   => 1458706997000,
-                 'request_host' => 'api.shipit.vn'
-               }.to_s
+            :response => {
+              :status => 200,
+              :body   => {
+                'upstream_url' => 'https://api.shipit.vn/v2/',
+                'id'           => '0faeb3a7-3839-4739-916a-6b139c5b491b',
+                'name'         => 'shipit',
+                'created_at'   => 1458706997000,
+                'request_host' => 'api.shipit.vn'
+              }.to_s
             }
           )
         end
@@ -80,9 +80,9 @@ module RubyKong
           url = RubyKong::Utils.endpoint_builder(path)
 
           RubyKong::Stub.request(
-            method: :get,
-            url: url,
-            response: {
+            :method   => :get,
+            :url      => url,
+            :response => {
               :status => 200,
               :body   => {
                 "upstream_url" => "https://api.shipit.vn/v1/",
@@ -99,9 +99,9 @@ module RubyKong
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:api][:list])
 
           RubyKong::Stub.request(
-            method: :get,
-            url: url,
-            response: {
+            :method   => :get,
+            :url      => url,
+            :response => {
               :status => 200,
               :body   => {
                 "data"   =>
@@ -123,16 +123,16 @@ module RubyKong
         def self.create
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:api][:create])
           RubyKong::Stub.request(
-            method: :post,
-            url: url,
-            request: {
+            :method   => :post,
+            :url      => url,
+            :request  => {
               :body => {
                 :upstream_url => 'https://api.shipit.vn/v1/',
                 :request_host => 'api.shipit.vn',
                 :name         => 'shipit'
               }
             },
-            response: {
+            :response => {
               :status => 201,
               :body   => {
                 'upstream_url' => 'https://api.shipit.vn/v1/',

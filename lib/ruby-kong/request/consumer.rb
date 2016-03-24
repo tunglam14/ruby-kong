@@ -14,19 +14,19 @@ module RubyKong
 
         def retrieve(*args)
           resource = args[0][:username] || args[0][:id]
-          path = RubyKong.paths[:consumer][:retrieve] + resource
+          path     = RubyKong.paths[:consumer][:retrieve] + resource
           Request.get(path)
         end
 
         def update(*args)
           resource = args[0][:username] || args[0][:id]
-          path = RubyKong.paths[:consumer][:update] + resource
+          path     = RubyKong.paths[:consumer][:update] + resource
           Request.patch(path, args[0])
         end
 
         def delete(*args)
           resource = args[0][:username] || args[0][:id]
-          path = RubyKong.paths[:consumer][:update] + resource
+          path     = RubyKong.paths[:consumer][:update] + resource
           Request.delete(path, args[0])
         end
       end
@@ -35,12 +35,12 @@ module RubyKong
         def self.delete
           # Mock with /consumers/lamdt path
           path = RubyKong.paths[:consumer][:delete] + 'lamdt'
-          url = RubyKong::Utils.endpoint_builder(path)
+          url  = RubyKong::Utils.endpoint_builder(path)
 
           RubyKong::Stub.request(
-            method: :delete,
-            url: url,
-            response: {
+            :method   => :delete,
+            :url      => url,
+            :response => {
               :status => 204,
               :body   => ""
             }
@@ -51,16 +51,17 @@ module RubyKong
           # Mock with /consumers/lamdt path
           path = RubyKong.paths[:consumer][:update] + 'lamdt'
           url = RubyKong::Utils.endpoint_builder(path)
+
           RubyKong::Stub.request(
-            method: :patch,
-            url: url,
-            request: {
+            :method   => :patch,
+            :url      => url,
+            :request  => {
               :body => {
                 :custom_id => '1234',
                 :username  => 'lamdt'
               }
             },
-            response: {
+            :response => {
               :status => 200,
               :body   => {
                 'custom_id'  => 1234,
@@ -78,9 +79,9 @@ module RubyKong
           url = RubyKong::Utils.endpoint_builder(path)
 
           RubyKong::Stub.request(
-            method: :get,
-            url: url,
-            response: {
+            :method   => :get,
+            :url      => url,
+            :response => {
               :status => 200,
               :body   => {
                 'username'   => 'lamdt',
@@ -95,9 +96,9 @@ module RubyKong
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:consumer][:list])
 
           RubyKong::Stub.request(
-            method: :get,
-            url: url,
-            response: {
+            :method   => :get,
+            :url      => url,
+            :response => {
               :status => 200,
               :body   => {
                 "data"   =>
@@ -118,14 +119,14 @@ module RubyKong
           url = RubyKong::Utils.endpoint_builder(RubyKong.paths[:consumer][:create])
 
           RubyKong::Stub.request(
-            method: :post,
-            url: url,
-            request: {
+            :method   => :post,
+            :url      => url,
+            :request  => {
               :body => {
                 :username => 'lamdt'
               }
             },
-            response: {
+            :response => {
               :status => 201,
               :body   => {
                 'username'   => 'lamdt',
