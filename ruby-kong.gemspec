@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "A Ruby client for the Kong API (https://getkong.org/)"
   spec.description   = "A Ruby client for the Kong API"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/tunglam14/ruby-kong"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
