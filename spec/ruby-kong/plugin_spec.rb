@@ -38,6 +38,21 @@ describe RubyKong::Plugin do
     expect(api.code).to equal(200)
   end
 
+  it 'retrieve a list of all installed plugins' do
+    RubyKong::Request::Plugin::Stub.retrieve_enabled
+
+    api = RubyKong::Plugin.retrieve_enabled
+    expect(api.body).to include('key-auth')
+    expect(api.code).to equal(200)
+  end
+
+  it "retrieve the schema of a plugin's configuration" do
+    RubyKong::Request::Plugin::Stub.retrieve_schema
+
+    api = RubyKong::Plugin.retrieve_schema plugin_name: 'basic-auth'
+    expect(api.code).to equal(200)
+  end
+
   it 'update a plugin (/apis/:api_id/plugins/:plugin_id)' do
     RubyKong::Request::Plugin::Stub.update
 
