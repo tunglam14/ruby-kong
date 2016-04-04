@@ -35,6 +35,19 @@ module RubyKong
         RubyKong::Request::Plugin.retrieve args[0]
       end
 
+      #
+      # Usage: RubyKong::Plugin.retrieve_enabled
+      def retrieve_enabled(*args)
+        RubyKong::Request::Plugin.retrieve_enabled args[0]
+      end
+
+      # Params: plugin_name
+      #
+      # Usage: RubyKong::Plugin.retrieve_schema plugin_name: 'basic_auth'
+      def retrieve_schema(*args)
+        RubyKong::Request::Plugin.retrieve_schema args[0]
+      end
+
       # Params: api:, plugin:,
       #         params: {name:, consumer_id:, config.{property}}
       #
