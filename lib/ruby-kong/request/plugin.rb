@@ -26,6 +26,18 @@ module RubyKong
           Request.get(path)
         end
 
+        def retrieve_enabled(*args)
+          path      = RubyKong.paths[:plugin][:retrieve_enabled]
+          Request.get(path)
+        end
+
+        def retrieve_schema(*args)
+          plugin_name = args[0][:plugin_name]
+          path        = RubyKong.paths[:plugin][:retrieve_schema]
+          path.gsub!(':plugin_name', plugin_name)
+          Request.get(path)
+        end
+
         def update(*args)
           api_id    = args[0][:api]
           plugin_id = args[0][:plugin]
@@ -108,6 +120,65 @@ module RubyKong
                   'key_names'        => ['apikey'],
                   'hide_credentials' => false
                 }
+              }.to_s
+            }
+          )
+        end
+
+        def self.retrieve_enabled
+          path = RubyKong.paths[:plugin][:retrieve_enabled]
+          url = RubyKong::Utils.endpoint_builder(path)
+
+          RubyKong::Stub.request(
+            :method   => :get,
+            :url      => url,
+            :response => {
+              :status => 200,
+              :body   => {
+                "enabled_plugins": [
+                    "ssl",
+                    "jwt",
+                    "acl",
+                    "cors",
+                    "oauth2",
+                    "tcp-log",
+                    "udp-log",
+                    "file-log",
+                    "http-log",
+                    "key-auth",
+                    "hmac-auth",
+                    "basic-auth",
+                    "ip-restriction",
+                    "mashape-analytics",
+                    "request-transformer",
+                    "response-transformer",
+                    "request-size-limiting",
+                    "rate-limiting",
+                    "response-ratelimiting"
+                ]
+              }.to_s
+            }
+          )
+        end
+
+        def self.retrieve_schema
+          path = RubyKong.paths[:plugin][:retrieve_schema]
+          path.gsub!(':plugin_name', 'basic-auth')
+          url = RubyKong::Utils.endpoint_builder(path)
+
+          RubyKong::Stub.request(
+            :method   => :get,
+            :url      => url,
+            :response => {
+              :status => 200,
+              :body   => {
+                "fields": {
+                  "hide_credentials": {
+                    "type":"boolean",
+                    "default":false
+                  }
+                },
+                "no_consumer":true
               }.to_s
             }
           )
