@@ -1,3 +1,3 @@
 module RubyKong
-  VERSION = '0.1.0a'.freeze
+  VERSION = '0.1.1'.freeze
 end
